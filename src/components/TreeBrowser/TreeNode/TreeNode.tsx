@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ITreeNode } from "../../../interfaces/index";
 import "./TreeNode.css";
-import { JsxElement } from "typescript";
 import NodeType from "./NodeType";
 
 type Props = {
@@ -12,7 +11,7 @@ type Props = {
 function TreeNode({ nodes, level }: Props) {
   const [expandedFolder, setToExpandedFolder] = useState<Array<ITreeNode>>([]);
 
-  function nodeClicked(node: ITreeNode) {
+  function nodeClicked(node: ITreeNode): void {
     if (!isExpanded(node)) {
       setToExpandedFolder([...expandedFolder, node]);
     } else {
@@ -22,6 +21,12 @@ function TreeNode({ nodes, level }: Props) {
       setToExpandedFolder(temporaryArray);
     }
   }
+
+  function viewFilesInFolder(node: ITreeNode): ITreeNode[] | ITreeNode | undefined {
+    console.log(node);
+    return node.type === 'directory' ? node.contents : node;
+  }
+
 
   function isExpanded(node: ITreeNode): boolean {
     return expandedFolder.indexOf(node) !== -1;
@@ -39,7 +44,7 @@ function TreeNode({ nodes, level }: Props) {
             <span onClick={() => nodeClicked(node)}>
               <NodeType node={node} isExpanded={isExpanded(node)}></NodeType>
             </span>
-            <span>{node.name}</span>
+            <span onClick={() => viewFilesInFolder(node)}>{node.name}</span>
             {isExpanded(node) && node.contents && (
               <TreeNode nodes={node.contents} level={level + 1} />
             )}
