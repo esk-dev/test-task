@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { ITreeNode } from "../../../interfaces/index";
 import "./TreeNode.css";
-import NodeType from "./NodeType";
-
+import NodeType from "../NodeType/NodeType";
+import { FolderViewContext } from "../../../interfaces/fodlerViewContext";
 type Props = {
   nodes: Array<ITreeNode> | undefined;
   level: number;
@@ -10,6 +10,7 @@ type Props = {
 
 function TreeNode({ nodes, level }: Props) {
   const [expandedFolder, setToExpandedFolder] = useState<Array<ITreeNode>>([]);
+  const { setFolder } = useContext(FolderViewContext);
 
   function nodeClicked(node: ITreeNode): void {
     if (!isExpanded(node)) {
@@ -22,11 +23,11 @@ function TreeNode({ nodes, level }: Props) {
     }
   }
 
-  function viewFilesInFolder(node: ITreeNode): ITreeNode[] | ITreeNode | undefined {
+  function viewFilesInFolder(node: ITreeNode): void {
     console.log(node);
-    return node.type === 'directory' ? node.contents : node;
+    const folder = node.type === "directory" ? node.contents : node;
+    setFolder(folder);
   }
-
 
   function isExpanded(node: ITreeNode): boolean {
     return expandedFolder.indexOf(node) !== -1;

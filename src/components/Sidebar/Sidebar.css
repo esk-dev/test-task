@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
+  padding: 5px;
 }
 .sidebar-overlay {
   position: fixed;
@@ -34,7 +34,14 @@
   visibility: visible;
 }
 .sd-body {
-  padding: 15px;
-  max-height: calc(100vh - 8vh);
+  padding: 5px;
+  height: calc(100vh - 20vh);
   overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    box-shadow: none;
+  }
 }

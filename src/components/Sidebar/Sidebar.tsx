@@ -7,21 +7,15 @@ type SidebarProps = {
   ToggleSidebar: Function;
 };
 
-function Sidebar(props: SidebarProps) {
-  const { isOpen, ToggleSidebar } = props;
-  // const [isOpen, setIsopen] = useState(false);
-
-  // const ToggleSidebar = () => {
-  //   isOpen === true ? setIsopen(false) : setIsopen(true);
-  // };
+function Sidebar({isOpen, ToggleSidebar, children}: SidebarProps) {
   return (
     <>
       <div className={`sidebar ${isOpen == true ? "active" : ""}`}>
         <div className="sd-header">
-          <h4>Sidebar Header</h4>
+          <h5>Sidebar Header</h5>
           <button onClick={() => ToggleSidebar()}>close</button>
         </div>
-        <div className="sd-body">{props.children}</div>
+        <div className="sd-body">{children}</div>
       </div>
       <div
         className={`sidebar-overlay ${isOpen == true ? "active" : ""}`}

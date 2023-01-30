@@ -4,8 +4,8 @@ import "./Header.css";
 type HeaderProps = {
   ToggleSidebar: Function;
 };
-function Header(props: HeaderProps) {
-  const { ToggleSidebar } = props;
+function Header( { ToggleSidebar }: HeaderProps) {
+
   return (
     <header className="header">
         <nav>
