@@ -26,12 +26,19 @@ li {
   background-color: #ffffff;
   box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
 }
+.col-1 {
+  border-right: solid 1px gray;
+}
+.col-2 {
+  border-right: solid 1px gray;
+}
 .col-1,
 .col-2,
 .col-3 {
   flex-basis: 33%;
   text-align: left;
   word-break: break-word;
+  hyphens: auto;
 }
 
 @media all and (max-width: 767px) {
@@ -42,12 +49,12 @@ li {
     padding: 10px 8px;
   }
   .col-1 {
-    flex-basis: 25%;
+    flex-basis: 45%;
   }
   .col-2 {
     flex-basis: 15%;
   }
   .col-3 {
-    flex-basis: 46%;
+    flex-basis: 35%;
   }
 }
