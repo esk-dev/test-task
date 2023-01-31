@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
+import { FolderViewContext } from "../../../services/fodlerViewContext";
 import { ITreeNode } from "../../../interfaces/index";
-import "./TreeNode.css";
 import NodeType from "../NodeType/NodeType";
-import { FolderViewContext } from "../../../interfaces/fodlerViewContext";
+import "./TreeNode.css";
+
 type Props = {
-  nodes: Array<ITreeNode> | undefined;
+  nodes: Array<ITreeNode>;
   level: number;
 };
 
@@ -12,15 +13,15 @@ function TreeNode({ nodes, level }: Props) {
   const [expandedFolder, setToExpandedFolder] = useState<Array<ITreeNode>>([]);
   const { setFolder } = useContext(FolderViewContext);
 
-  useEffect(() => {
-    const workTree = window.localStorage.getItem("workTree");
-    workTree && setToExpandedFolder(JSON.parse(workTree));
-  }, []);
+  // useEffect(() => {
+  //   const workTree = window.localStorage.getItem("workTree");
+  //   workTree && setToExpandedFolder(JSON.parse(workTree));
+  // }, []);
 
-  useEffect(() => {
-    window.localStorage.clear();
-    window.localStorage.setItem("workTree", JSON.stringify(expandedFolder));
-  }, [expandedFolder]);
+  // useEffect(() => {
+  //   window.localStorage.clear();
+  //   window.localStorage.setItem("workTree", JSON.stringify(expandedFolder));
+  // }, [expandedFolder]);
 
   function nodeClicked(node: ITreeNode): void {
     if (!isExpanded(node)) {
@@ -34,7 +35,6 @@ function TreeNode({ nodes, level }: Props) {
   }
 
   function viewFilesInFolder(node: ITreeNode): void {
-    console.log(node);
     const folder = node.type === "directory" ? node.contents : node;
     setFolder(folder);
   }
@@ -52,12 +52,12 @@ function TreeNode({ nodes, level }: Props) {
             style={{ paddingLeft: level * 5 + "px" }}
             key={node.name}
           >
-            <div className="node--item">
+            <div className="node-item">
               <div onClick={() => nodeClicked(node)}>
                 <NodeType node={node} isExpanded={isExpanded(node)}></NodeType>
               </div>
               <div
-                className="node--name"
+                className="node-name"
                 onClick={() => viewFilesInFolder(node)}
               >
                 {node.name}
