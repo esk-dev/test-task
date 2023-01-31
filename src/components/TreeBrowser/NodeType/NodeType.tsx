@@ -2,6 +2,7 @@ import React from "react";
 import "./NodeType.css";
 import { ITreeNode } from "../../../interfaces/index";
 import { MdInsertDriveFile, MdFolderOpen, MdFolder } from "react-icons/md";
+import { HiPlusSm, HiMinusSm } from "react-icons/hi";
 
 type Props = {
   node: ITreeNode;
@@ -10,15 +11,19 @@ type Props = {
 
 function NodeType({ node, isExpanded }: Props) {
   return (
-    <span className="type">
+    <div className="type">
       {node.type === "file" ? (
         <MdInsertDriveFile />
       ) : isExpanded ? (
-        <MdFolderOpen />
+        <>
+          <HiMinusSm /> <MdFolderOpen />
+        </>
       ) : (
-        <MdFolder />
+        <>
+          <HiPlusSm /> <MdFolder />
+        </>
       )}
-    </span>
+    </div>
   );
 }
 export default NodeType;

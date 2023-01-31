@@ -4,6 +4,6 @@ export interface ITreeNode {
   type: StructureType;
   name: string;
   size?: string;
-  time?: Date;
+  time?: string;
   contents?: Array<ITreeNode>;
 }

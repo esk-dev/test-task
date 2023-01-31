@@ -8,13 +8,12 @@ type HeaderProps = {
 function Header({ ToggleSidebar }: HeaderProps) {
   return (
     <header className="header">
-      <nav>
-        <div>
-          <Button type={"icon"} onClick={ToggleSidebar}>
-            {<HiMenuAlt1 />}
-          </Button>
-        </div>
-      </nav>
+      <div>
+        <Button type={"icon"} onClick={ToggleSidebar}>
+          {<HiMenuAlt1 />}
+        </Button>
+      </div>
+      <h3>File Explorer</h3>
     </header>
   );
 }

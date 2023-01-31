@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ITreeNode } from "../../../interfaces/index";
 import "./TreeNode.css";
 import NodeType from "../NodeType/NodeType";
@@ -11,6 +11,16 @@ type Props = {
 function TreeNode({ nodes, level }: Props) {
   const [expandedFolder, setToExpandedFolder] = useState<Array<ITreeNode>>([]);
   const { setFolder } = useContext(FolderViewContext);
+
+  useEffect(() => {
+    const workTree = window.localStorage.getItem("workTree");
+    workTree && setToExpandedFolder(JSON.parse(workTree));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.clear();
+    window.localStorage.setItem("workTree", JSON.stringify(expandedFolder));
+  }, [expandedFolder]);
 
   function nodeClicked(node: ITreeNode): void {
     if (!isExpanded(node)) {
@@ -42,10 +52,17 @@ function TreeNode({ nodes, level }: Props) {
             style={{ paddingLeft: level * 5 + "px" }}
             key={node.name}
           >
-            <span onClick={() => nodeClicked(node)}>
-              <NodeType node={node} isExpanded={isExpanded(node)}></NodeType>
-            </span>
-            <span onClick={() => viewFilesInFolder(node)}>{node.name}</span>
+            <div className="node--item">
+              <div onClick={() => nodeClicked(node)}>
+                <NodeType node={node} isExpanded={isExpanded(node)}></NodeType>
+              </div>
+              <div
+                className="node--name"
+                onClick={() => viewFilesInFolder(node)}
+              >
+                {node.name}
+              </div>
+            </div>
             {isExpanded(node) && node.contents && (
               <TreeNode nodes={node.contents} level={level + 1} />
             )}

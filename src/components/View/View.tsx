@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useContext } from "react";
 import { ITreeNode } from "../../interfaces/index";
 import { FolderViewContext } from "../../interfaces/fodlerViewContext";
 import "./View.css";
@@ -8,29 +8,55 @@ import "./View.css";
 // };
 function View() {
   const { folderFiles } = useContext(FolderViewContext);
-  // const [view, setFolderItems] = useState<any>(null);
   console.log(folderFiles);
   function listFiles(node: ITreeNode[]) {
     return node.map((file) => (
-      <div className="tab-row" key={file.name}>
-        <span>{file.size}</span>
-        <span>{file.name}</span>
-        <span>{file.type}</span>
-      </div>
+      <li className="table-row" key={file.name}>
+        <div className="col col-1" data-label="file-name">
+          {file.name}
+        </div>
+        <div className="col col-2" data-label="size">
+          {file.size}
+        </div>
+        <div className="col col-3" data-label="last-modification">
+          {file.time}
+        </div>
+      </li>
     ));
   }
   function file(node: ITreeNode) {
     return (
-      <div className="tab-row">
-        <span>{node.size}</span>
-        <span>{node.name}</span>
-        <span>{node.type}</span>
-      </div>
+      <li className="table-row">
+        <div className="col col-1" data-label="file-name">
+          {node.name}
+        </div>
+        <div className="col col-2" data-label="size">
+          {node.size}
+        </div>
+        <div className="col col-3" data-label="last-modification">
+          {node.time}
+        </div>
+      </li>
     );
   }
   return (
     <div className="view">
-      {Array.isArray(folderFiles) ? listFiles(folderFiles) : file(folderFiles)}
+      <ul className="responsive-table">
+        <li className="table-header">
+          <div className="col col-1" data-label="file-name">
+            File name
+          </div>
+          <div className="col col-2" data-label="size">
+            Size
+          </div>
+          <div className="col col-3" data-label="last-modification">
+            Last modification
+          </div>
+        </li>
+        {Array.isArray(folderFiles)
+          ? listFiles(folderFiles)
+          : file(folderFiles)}
+      </ul>
     </div>
   );
 }
