@@ -1,24 +1,56 @@
-# Getting Started with Create React App
+# File explorer
+## Тестовое задание
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Build Status](https://github.com/esk-dev/test-task/actions/workflows/ci.yml/badge.svg)
 
-## Available Scripts
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4f9da065-f4c4-4338-ab93-22808ec6c519/deploy-status)](https://app.netlify.com/sites/subtle-fudge-95f36d/deploys)
 
-In the project directory, you can run:
+[Сайт в интернете](https://tree-file-explorer.netlify.app/)
+https://tree-file-explorer.netlify.app/
 
-### `npm start`
+Небольшое приложение для просмотра файлов.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features
 
-### `npm test`
+- Просмотр списка папок и файлов  
+- Отображение содержимого папок
+- Дерево файлов в сайдбаре
 
-Launches the test runner in the interactive watch mode.\
+## Tech
 
-### `npm run build`
+Использовано в работе:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [React](https://ru.reactjs.org/) - JavaScript фреймворк 
+- [TypeScript](https://www.typescriptlang.org/) - Для строгой проверки типов
+- [React Icons](https://react-icons.github.io/react-icons/) - Библиотека популярных иконок 
+- [Git](https://git-scm.com/) - Система контроля версий
+- [GitHub/GitHub Actions](https://github.com/) - Хранилище репозитория и инструмент CI 
+- [Html/CSS](https://www.w3schools.com/)
+
+## ToDo
+
+- [ ] - Тесты
+- [ ] - Возможность отображения файлов
+- [ ] - Придумать что делать дальше
+- [ ] - Написать как проходила разработка
+
+Установить зависимости 
+```
+    npm install
+```
+
+Запуск в режиме разработки
+```
+    npm start
+```
+
+Запустить Unit-тесты
+```
+    npm test
+```
+
+Запустить сборку приложения для деплоя
+```
+    npm run build
+```
