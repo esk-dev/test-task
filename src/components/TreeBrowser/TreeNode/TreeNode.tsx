@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { FolderViewContext } from "../../../services/fodlerViewContext";
 import { ITreeNode } from "../../../interfaces/index";
 import NodeType from "../NodeType/NodeType";
@@ -10,12 +10,25 @@ type Props = {
 };
 
 function TreeNode({ nodes, level }: Props) {
-  const [expandedFolder, setToExpandedFolder] = useState<Array<ITreeNode>>([]);
+  const [expandedFolder, expandFolder] = useState<Array<ITreeNode>>([]);
   const { setFolder } = useContext(FolderViewContext);
 
+  function setToExpandedFolder(node: ITreeNode): void {
+    const arr = expandedFolder.slice(0);
+    arr.push(node);
+    expandFolder(arr);
+  }
+
+  function unsetFromExpandedFolder(node: ITreeNode): void {
+    const idx = expandedFolder.indexOf(node);
+    const arr = expandedFolder.slice(0);
+    arr.splice(idx, 1);
+    expandFolder(arr);
+  }
+  // Попытка в кэширование
   // useEffect(() => {
   //   const workTree = window.localStorage.getItem("workTree");
-  //   workTree && setToExpandedFolder(JSON.parse(workTree));
+  //   workTree && expandFolder(JSON.parse(workTree));
   // }, []);
 
   // useEffect(() => {
@@ -25,16 +38,13 @@ function TreeNode({ nodes, level }: Props) {
 
   function nodeClicked(node: ITreeNode): void {
     if (!isExpanded(node)) {
-      setToExpandedFolder([...expandedFolder, node]);
+      setToExpandedFolder(node);
     } else {
-      const temporaryArray = [...expandedFolder];
-      const idx = temporaryArray.indexOf(node);
-      temporaryArray.splice(idx, 1);
-      setToExpandedFolder(temporaryArray);
+      unsetFromExpandedFolder(node);
     }
   }
 
-  function viewFilesInFolder(node: ITreeNode): void {
+  function viewFilesFromFolder(node: ITreeNode): void {
     const folder = node.type === "directory" ? node.contents : node;
     setFolder(folder);
   }
@@ -58,7 +68,7 @@ function TreeNode({ nodes, level }: Props) {
               </div>
               <div
                 className="node-name"
-                onClick={() => viewFilesInFolder(node)}
+                onClick={() => viewFilesFromFolder(node)}
               >
                 {node.name}
               </div>

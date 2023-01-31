@@ -13,7 +13,7 @@ function Header({ ToggleSidebar }: HeaderProps) {
           {<HiMenuAlt1 />}
         </Button>
       </div>
-      <h3>File Explorer</h3>
+      <h1>File Explorer</h1>
     </header>
   );
 }
