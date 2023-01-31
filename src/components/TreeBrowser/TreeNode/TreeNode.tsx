@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { FolderViewContext } from "../../../services/fodlerViewContext";
 import { ITreeNode } from "../../../interfaces/index";
 import NodeType from "../NodeType/NodeType";

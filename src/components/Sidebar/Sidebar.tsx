@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../Layout/Button/Button";
 import { HiX } from "react-icons/hi";
 import "./Sidebar.css";
@@ -12,7 +12,7 @@ type SidebarProps = {
 function Sidebar({ isOpen, ToggleSidebar, children }: SidebarProps) {
   return (
     <>
-      <div className={`sidebar ${isOpen == true ? "active" : ""}`}>
+      <div className={`sidebar ${isOpen === true ? "active" : ""}`}>
         <div className="sd-header">
           <h5>Directories</h5>
           <Button type={"icon"} onClick={ToggleSidebar}>
@@ -22,7 +22,7 @@ function Sidebar({ isOpen, ToggleSidebar, children }: SidebarProps) {
         <div className="sd-body">{children}</div>
       </div>
       <div
-        className={`sidebar-overlay ${isOpen == true ? "active" : ""}`}
+        className={`sidebar-overlay ${isOpen === true ? "active" : ""}`}
         onClick={() => ToggleSidebar()}
       ></div>
     </>

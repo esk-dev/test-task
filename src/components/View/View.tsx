@@ -1,4 +1,4 @@
-import { useContext, useEffect, memo } from "react";
+import { useContext, memo } from "react";
 import { ITreeNode } from "../../interfaces/index";
 import { FolderViewContext } from "../../services/fodlerViewContext";
 import "./View.css";
