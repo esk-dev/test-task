@@ -9,7 +9,7 @@ type ButtonProps = {
 function Button({ onClick, children, type }: ButtonProps) {
   return (
     <button
-      className={type == "icon" ? "button icon" : "button"}
+      className={type === "icon" ? "button icon" : "button"}
       onClick={() => onClick()}
     >
       {children}

@@ -4,22 +4,26 @@ import { ITreeNode } from "../../interfaces/index";
 import "./TreeBrowser.css";
 
 function TreeBrowser() {
-  const [nodes, setNodes] = useState<Array<ITreeNode>>();
+  const [nodes, setNodes] = useState<Array<ITreeNode>>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const response: Response = await fetch(
         "https://mocki.io/v1/5a8e3313-5cf3-4962-8b77-f7ae79452367"
       );
-      const data = await response.json();
+      const data: Array<ITreeNode> = await response.json();
       setNodes(data);
     };
     fetchData().catch(console.error);
   }, []);
 
   return (
-    <div className="tree--wrapper">
-      {nodes && <TreeNode nodes={nodes} level={0}></TreeNode>}
+    <div className="tree-browser">
+      {nodes ? (
+        <TreeNode nodes={nodes} level={0}></TreeNode>
+      ) : (
+        "Loading files..."
+      )}
     </div>
   );
 }

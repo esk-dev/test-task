@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { ITreeNode } from "../../interfaces/index";
-import { FolderViewContext } from "../../interfaces/fodlerViewContext";
+import { FolderViewContext } from "../../services/fodlerViewContext";
 import "./View.css";
 
 // type ViewProps = {
@@ -8,7 +8,11 @@ import "./View.css";
 // };
 function View() {
   const { folderFiles } = useContext(FolderViewContext);
-  console.log(folderFiles);
+  
+  // useEffect(() => {
+  //   console.log(folderFiles);
+  // }, [folderFiles]);
+  
   function listFiles(node: ITreeNode[]) {
     return node.map((file) => (
       <li className="table-row" key={file.name}>
@@ -61,4 +65,4 @@ function View() {
   );
 }
 
-export default View;
+export default memo(View);

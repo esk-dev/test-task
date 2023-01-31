@@ -8,16 +8,16 @@
   align-items: center;
 }
 
-.node--name {
+.node-name {
   cursor: pointer;
   font-weight: 600;
 }
 
-.node--name:hover {
+.node-name:hover {
   color: rgb(25 118 210 / 60%);
 }
 
-.node--item {
+.node-item {
   display: flex;
   flex-direction: row;
   align-items: center;
