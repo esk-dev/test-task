@@ -35,6 +35,8 @@ https://tree-file-explorer.netlify.app/
 - [ ] - Придумать что делать дальше
 - [ ] - Написать как проходила разработка
 
+## Installing
+
 Установить зависимости 
 ```
     npm install
