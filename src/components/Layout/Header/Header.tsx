@@ -9,7 +9,7 @@ function Header({ ToggleSidebar }: HeaderProps) {
   return (
     <header className="header">
       <div>
-        <Button type={"icon"} onClick={ToggleSidebar}>
+        <Button name={'Open or close sidebar'} type={"icon"} onClick={ToggleSidebar}>
           {<HiMenuAlt1 />}
         </Button>
       </div>
