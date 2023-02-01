@@ -5,10 +5,12 @@ type ButtonProps = {
   onClick: Function;
   children: React.ReactNode;
   type?: string;
+  name?: string;
 };
-function Button({ onClick, children, type }: ButtonProps) {
+function Button({ onClick, children, type, name }: ButtonProps) {
   return (
     <button
+      aria-label={name}
       className={type === "icon" ? "button icon" : "button"}
       onClick={() => onClick()}
     >

@@ -13,30 +13,20 @@ function TreeNode({ nodes, level }: Props) {
   const [expandedFolder, expandFolder] = useState<Array<ITreeNode>>([]);
   const { setFolder } = useContext(FolderViewContext);
 
-  function setToExpandedFolder(node: ITreeNode): void {
-    const arr = expandedFolder.slice(0);
-    arr.push(node);
-    expandFolder(arr);
+  const setToExpandedFolder = (node: ITreeNode): void => {
+    const array = expandedFolder.slice(0);
+    array.push(node);
+    expandFolder(array);
   }
 
-  function unsetFromExpandedFolder(node: ITreeNode): void {
+  const unsetFromExpandedFolder = (node: ITreeNode): void => {
     const idx = expandedFolder.indexOf(node);
-    const arr = expandedFolder.slice(0);
-    arr.splice(idx, 1);
-    expandFolder(arr);
+    const array = expandedFolder.slice(0);
+    array.splice(idx, 1);
+    expandFolder(array);
   }
-  // Попытка в кэширование
-  // useEffect(() => {
-  //   const workTree = window.localStorage.getItem("workTree");
-  //   workTree && expandFolder(JSON.parse(workTree));
-  // }, []);
 
-  // useEffect(() => {
-  //   window.localStorage.clear();
-  //   window.localStorage.setItem("workTree", JSON.stringify(expandedFolder));
-  // }, [expandedFolder]);
-
-  function nodeClicked(node: ITreeNode): void {
+  const nodeClicked = (node: ITreeNode): void => {
     if (!isExpanded(node)) {
       setToExpandedFolder(node);
     } else {
@@ -44,12 +34,12 @@ function TreeNode({ nodes, level }: Props) {
     }
   }
 
-  function viewFilesFromFolder(node: ITreeNode): void {
+  const viewFilesFromFolder = (node: ITreeNode): void => {
     const folder = node.type === "directory" ? node.contents : node;
     setFolder(folder);
   }
 
-  function isExpanded(node: ITreeNode): boolean {
+  const isExpanded = (node: ITreeNode): boolean => {
     return expandedFolder.indexOf(node) !== -1;
   }
 

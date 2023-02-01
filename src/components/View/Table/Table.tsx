@@ -5,6 +5,7 @@ import "./Table.css";
 type TableProps = {
   files: Array<ITreeNode>;
 };
+
 function Table({ files }: TableProps) {
   const arr = Array.isArray(files) ? files : [files];
   return (

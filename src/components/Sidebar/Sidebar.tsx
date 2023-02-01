@@ -15,7 +15,7 @@ function Sidebar({ isOpen, ToggleSidebar, children }: SidebarProps) {
       <div className={`sidebar ${isOpen === true ? "active" : ""}`}>
         <div className="sd-header">
           <h2>Directories</h2>
-          <Button type={"icon"} onClick={ToggleSidebar}>
+          <Button name={'Close sidebar'}type={"icon"} onClick={ToggleSidebar}>
             {<HiX />}
           </Button>
         </div>
