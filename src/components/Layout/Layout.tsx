@@ -21,7 +21,7 @@ function Layout() {
           <Sidebar ToggleSidebar={ToggleSidebar} isOpen={isOpen}>
             <TreeBrowser />
           </Sidebar>
-          <View />
+          <View isOpen={isOpen}/>
       </main>
     </>
   );
