@@ -12,19 +12,21 @@ type SidebarProps = {
 function Sidebar({ isOpen, ToggleSidebar, children }: SidebarProps) {
   return (
     <>
-      <div className={`sidebar ${isOpen === true ? "active" : ""}`}>
+      <aside className={`sidebar ${isOpen === true ? "active" : ""}`}>
         <div className="sd-header">
           <h2>Directories</h2>
-          <Button name={'Close sidebar'}type={"icon"} onClick={ToggleSidebar}>
+          <Button name={'Close sidebar'} type={"icon"} onClick={ToggleSidebar}>
             {<HiX />}
           </Button>
         </div>
         <div className="sd-body">{children}</div>
-      </div>
+      </aside>
+      {/*
+        Не используется при фиксированном сайдбаре
       <div
         className={`sidebar-overlay ${isOpen === true ? "active" : ""}`}
         onClick={() => ToggleSidebar()}
-      ></div>
+      ></div> */}
     </>
   );
 }

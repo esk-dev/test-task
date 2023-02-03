@@ -64,7 +64,7 @@ function TreeNode({ nodes, level }: Props) {
               </div>
             </div>
             {isExpanded(node) && node.contents && (
-              <TreeNode nodes={node.contents} level={level + 1} />
+              <TreeNode key={node.name} nodes={node.contents} level={level + 1} />
             )}
           </div>
         ))}
